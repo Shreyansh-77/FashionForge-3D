@@ -8,6 +8,7 @@ const state = proxy({
     logoDecal: "./threejs.png",
     fullDecal: "./threejs.png",
     editorOpen: false,
+    pointer: { x: 0, y: 0 },
 })
 
 export default state;
