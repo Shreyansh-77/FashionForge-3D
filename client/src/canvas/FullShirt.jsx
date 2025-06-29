@@ -75,7 +75,7 @@ const FullShirt = () => {
           <Decal
             position={[0, 0, 0]}
             rotation={[0, 0, 0]}
-            scale={[1.5, 1.5, 1.5]}
+            scale={[2, 2, 2]}
             map={fullTexture}
           />
         )}

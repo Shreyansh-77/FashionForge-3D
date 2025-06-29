@@ -47,32 +47,32 @@ export const ClothModels = [
   {
     name: "Crop Top",
     icon: croptop,
-    num: 1
-  },
-  {
-    name: "Hoodie",
-    icon: hoodie,
-    num: 2
-  },
-  {
-    name: "Pants",
-    icon: pants,
-    num: 3
-  },
-  {
-    name: "Trouser",
-    icon: trouser,
-    num: 4
-  },
-  {
-    name: "Shoe",
-    icon: shoe,
-    num: 5
+    num: 6
   },
   {
     name: "Full Shirt",
     icon: clothes,
-    num: 6
+    num: 5
+  },
+  {
+    name: "Hoodie",
+    icon: hoodie,
+    num: 4
+  },
+  {
+    name: "Pants",
+    icon: pants,
+    num: 2
+  },
+  {
+    name: "Trouser",
+    icon: trouser,
+    num: 1
+  },
+  {
+    name: "Shoe",
+    icon: shoe,
+    num: 3
   },
 ];
 
