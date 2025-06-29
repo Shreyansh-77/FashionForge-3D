@@ -6,13 +6,15 @@ import config from '../config/config';
 import state from '../store';
 import { download, logoShirt } from '../assets';
 import { downloadCanvasToImage, reader } from '../config/helpers';
-import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants';
+import { EditorTabs, FilterTabs, DecalTypes, ClothModels } from '../config/constants';
 import { fadeAnimation, slideAnimation } from '../config/motion';
 import { AiPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../components';
 import { tr } from 'framer-motion/client';
 
 const Customizer = () => {
+
   const snap = useSnapshot(state);
+  
   const [file, setFile] = useState('');
   const [prompt, setPrompt] = useState('');
   const [generatingImg, setGeneratingImg] = useState(false);
@@ -21,7 +23,7 @@ const Customizer = () => {
     logoShirt: true,
     stylishShirt: false,
   });
-
+  const [activeModelTab, setActiveModelTab] = useState('TShirt');
 
   const generateTabContent = () => {
     switch (activeEditorTab) {
@@ -47,6 +49,11 @@ const Customizer = () => {
     }
   }
 
+  const handleModelTab = (tab) =>{
+    state.modelId = tab.num;
+    setActiveModelTab(tab.name);
+    console.log("Clicked model tab:", snap.modelId);
+  }
 
   const handleSubmit = async (type) => {
     if (!prompt) return alert('Please enter a prompt');
@@ -161,6 +168,21 @@ const Customizer = () => {
               }}
               customStyles="w-fit px-4 py-2.5 font-bold text-sm"
             />
+          </motion.div>
+
+          <motion.div
+            className='filtertabs-container-2 absolute top-50 right-0 z-1'
+            {...slideAnimation('right')}
+          >
+            {ClothModels.map((tab) => (
+              <Tab
+                key={tab.name}
+                tab={tab}
+                isFilterTab
+                isActiveTab={activeModelTab === tab.name} 
+                handleClick={() => handleModelTab(tab)}
+              />
+            ))}
           </motion.div>
 
           <motion.div

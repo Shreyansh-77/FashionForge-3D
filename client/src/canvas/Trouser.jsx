@@ -8,7 +8,7 @@ import * as THREE from 'three';
 
 import state from '../store';
 
-const Trouser = () => {
+const Shirt = () => {
   const snap = useSnapshot(state);
   const { nodes, materials } = useGLTF('/trouser.glb');
 
@@ -77,6 +77,7 @@ const Trouser = () => {
             material={node.material}
             material-side={THREE.DoubleSide}
             castShadow
+            position={[0, 0, 0]}
             // rotation={[4.7, 0, 0]}
             scale={[0.006, 0.006, 0.006]}
           >
@@ -107,4 +108,4 @@ const Trouser = () => {
   );
 };
 
-export default Trouser;
+export default Shirt;

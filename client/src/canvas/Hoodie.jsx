@@ -66,6 +66,7 @@ const Hoodie = () => {
         material={materials["Jacket_M"]}
         material-side={THREE.DoubleSide}
         castShadow
+        position={[0, 0, 0]}
         scale={[0.004, 0.004, 0.004]}
         dispose={null}
       >{snap.isFullTexture && (

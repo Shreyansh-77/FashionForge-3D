@@ -61,6 +61,7 @@ const Shirt = () => {
       onPointerLeave={handlePointerUp}
       onPointerMove={handlePointerMove}
       cursor="grab"
+      scale={[0.008, 0.008, 0.008]}
     >
 
       {Object.keys(nodes).map((key) => {
@@ -76,7 +77,8 @@ const Shirt = () => {
             material={node.material}
             material-side={THREE.DoubleSide}
             castShadow
-            scale={[0.008, 0.008, 0.008]} // Adjust if needed
+            position={[0, 0, 0]}
+            // scale={[0.008, 0.008, 0.008]}
           >
             {isTargetMaterial && snap.isFullTexture && (
               <Decal

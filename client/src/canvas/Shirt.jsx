@@ -10,6 +10,7 @@ import state from '../store';
 const Shirt = () => {
   const snap = useSnapshot(state);
   const { nodes, materials } = useGLTF('/shirt_baked.glb');
+  // console.log('Nodes----', nodes, "Materials----",materials)
 
   const logoTexture = useTexture(snap.logoDecal);
   const fullTexture = useTexture(snap.fullDecal);
@@ -65,6 +66,7 @@ const Shirt = () => {
         material={materials.lambert1}
         material-roughness={1}
         material-side={THREE.DoubleSide}
+        position={[0, 0, 0]}
         dispose={null}
       >
         {snap.isFullTexture && (

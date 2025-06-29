@@ -122,6 +122,7 @@ const Shirt = () => {
         material={materials.lambert1}
         material-roughness={1}
         material-side={THREE.DoubleSide}
+        position={[0, 0, 0]}
         dispose={null}
       >
         {snap.isFullTexture && (

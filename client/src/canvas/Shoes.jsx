@@ -73,6 +73,7 @@ const Shoes = () => {
       material={node.material}
       material-side={THREE.DoubleSide}
       castShadow
+      position={[0, 0, 0]}
       rotation={[4.7, 0, 0]}
       scale={[0.6, 0.22, 0.3]}
     >
