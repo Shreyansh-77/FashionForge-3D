@@ -60,8 +60,8 @@ const CanvasModel = () => {
       <SceneBackground />
       <CameraRig>
         <Backdrop />
-        <Center anchor={[0, 0, 0]}>
-          <group key={snap.modelId}>
+        <Center>
+          <group key={snap.modelId} position={[0, -0.5, 0]}>
             {CurrentModel}
           </group>
           {/* <Shirt /> */}
