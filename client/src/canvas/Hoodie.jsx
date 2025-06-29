@@ -6,6 +6,7 @@ import { Decal, useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
 import state from '../store';
+import { getContrastingColor } from '../config/helpers';
 
 const Hoodie = () => {
   const snap = useSnapshot(state);
@@ -36,13 +37,21 @@ const Hoodie = () => {
     setTargetRotationY((prev) => prev + deltaX * 0.01); 
   };
 
-  // Animate shirt color
   useFrame((state, delta) => {
     const mat1 = materials["Jacket_M"];
+    const mat2 = materials["Layer"];
+    const mat3 = materials["Layer_2"];
+    const mat4 = materials["Zipper"];
+    const mat5 = materials["Pants_M"];
+    const mat6 = materials["Shirt_M"];
     easing.dampC(mat1.color, snap.color, 0.25, delta);
+    easing.dampC(mat2.color, snap.color, 0.25, delta);
+    easing.dampC(mat3.color, snap.color, 0.25, delta);
+    easing.dampC(mat4.color, snap.color, 0.25, delta);
+    easing.dampC(mat5.color, getContrastingColor(snap.color), 0.25, delta);
+    easing.dampC(mat6.color, "#ff0000", 0.25, delta);
   });
-
-  // Animate shirt rotation
+ 
   useFrame((_, delta) => {
     if (groupRef.current) {
       groupRef.current.rotation.y += (targetRotationY - groupRef.current.rotation.y) * 0.1;
@@ -61,7 +70,47 @@ const Hoodie = () => {
       onPointerMove={handlePointerMove}
       cursor="grab"
     >
-      <mesh
+      {Object.keys(nodes).map((key) => {
+              const node = nodes[key];
+              if (!node.isMesh) return null;
+      
+              const isTargetMaterial = true;
+      
+              return (
+                <mesh
+                  key={key}
+                  geometry={node.geometry}
+                  material={node.material}
+                  material-side={THREE.DoubleSide}
+                  castShadow
+                  position={[0, 0, 0]}
+                  rotation={[0, 0, 0]}
+                  scale={[0.0056, 0.0056, 0.0056]}
+                >
+                  {isTargetMaterial && snap.isFullTexture && (
+                    <Decal
+                      position={[0, 0, 0]}
+                      rotation={[0, 0, 0]}
+                      scale={[1, 1, 1]}
+                      map={fullTexture}
+                    />
+                  )}
+                  {isTargetMaterial && snap.isLogoTexture && (
+                    <Decal
+                      texture={logoTexture}
+                      position={[0, 0.04, 0.15]}
+                      rotation={[0, 0, 0]}
+                      scale={[0.95, 0.75, 0.95]}
+                      map={logoTexture}
+                      anisotropy={16}
+                      depthTest={false}
+                      depthWrite={true}
+                    />
+                  )}
+                </mesh>
+              );
+            })}
+      {/* <mesh
         geometry={nodes["jacket04_Jacket_M_0"].geometry}
         material={materials["Jacket_M"]}
         material-side={THREE.DoubleSide}
@@ -157,7 +206,7 @@ const Hoodie = () => {
             depthWrite={false}
           />
         )}
-      </mesh>
+      </mesh> */}
     </group >
   );
 };

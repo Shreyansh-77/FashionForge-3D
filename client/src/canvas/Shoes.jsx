@@ -61,45 +61,45 @@ const Shoes = () => {
     >
 
       {Object.keys(nodes).map((key) => {
-  const node = nodes[key];
-  if (!node.isMesh) return null;
+        const node = nodes[key];
+        if (!node.isMesh) return null;
 
-  const isTargetMaterial = node.material?.name === 'Material0-material';
+        const isTargetMaterial = node.material?.name === 'Material0-material';
 
-  return (
-    <mesh
-      key={key}
-      geometry={node.geometry}
-      material={node.material}
-      material-side={THREE.DoubleSide}
-      castShadow
-      position={[0, 0, 0]}
-      rotation={[4.7, 0, 0]}
-      scale={[0.6, 0.22, 0.3]}
-    >
-      {isTargetMaterial && snap.isFullTexture && (
-        <Decal
-          position={[0, 0, 0]}
-          rotation={[0, 0, 0]}
-          scale={[1, 1, 1]}
-          map={fullTexture}
-        />
-      )}
-      {isTargetMaterial && snap.isLogoTexture && (
-        <Decal
-          texture={logoTexture}
-          position={[0, 0.04, 0.15]}
-          rotation={[0, 0, 0]}
-          scale={[0.95, 0.75, 0.95]}
-          map={logoTexture}
-          anisotropy={16}
-          depthTest={false}
-          depthWrite={true}
-        />
-      )}
-    </mesh>
-  );
-})}
+        return (
+          <mesh
+            key={key}
+            geometry={node.geometry}
+            material={node.material}
+            material-side={THREE.DoubleSide}
+            castShadow
+            position={[0, 0, 0]}
+            rotation={[4.7, 0, 0]}
+            scale={[0.6, 0.22, 0.3]}
+          >
+            {isTargetMaterial && snap.isFullTexture && (
+              <Decal
+                position={[0, 0, 0]}
+                rotation={[0, 0, 0]}
+                scale={[1, 1, 1]}
+                map={fullTexture}
+              />
+            )}
+            {isTargetMaterial && snap.isLogoTexture && (
+              <Decal
+                texture={logoTexture}
+                position={[0, 0.04, 0.15]}
+                rotation={[0, 0, 0]}
+                scale={[0.95, 0.75, 0.95]}
+                map={logoTexture}
+                anisotropy={16}
+                depthTest={false}
+                depthWrite={true}
+              />
+            )}
+          </mesh>
+        );
+      })}
     </group >
   );
 };
