@@ -3,7 +3,7 @@ import { TextureLoader } from 'three'
 import { useEffect } from 'react'
 
 const SceneBackground = () => {
-  const texture = useLoader(TextureLoader, '/wall.png')
+  const texture = useLoader(TextureLoader, '/wall7.png')
   const { scene } = useThree()
 
   useEffect(() => {
